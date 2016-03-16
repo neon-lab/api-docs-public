@@ -1256,7 +1256,7 @@
 .swagger-section #input_apiKey {
   width: 200px;
 }
-.swagger-section #explore {
+.swagger-section #sign_in {
   display: block;
   text-decoration: none;
   font-weight: bold;
@@ -1271,7 +1271,7 @@
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
-.swagger-section #explore:hover {
+.swagger-section #sign_in:hover {
   background-color: #547f00;
 }
 .swagger-section #header #logo {
