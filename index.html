@@ -145,5 +145,60 @@
 
 <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
 <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+
+<div class="swagger-ui-wrap">
+  <h1>Authorization flow</h1>
+
+  <p>You've got your username and password and you're ready to access the API. This live documentation manages tokens for you, but you'll generally need to fetch, store, and refresh your own tokens to use Neon.</p>
+  <p>You'll use your username and password to request a long-lived <code>refresh_token</code>. You can use that <code>refresh_token</code> to request a short-lived <code>access_token</code>. Your requests to the API are authenticated by sending along your access token.</p>
+  <p>Each access token expires after about 12 minutes, so you'll want to store the refresh token so you can acquire new access tokens.</p>
+  <p>The authentication endpoint is different from the API endpoint. It uses a different base URL (<code>https://auth.neon-lab.com</code>) and only responds to requests over HTTPS.</p>
+
+  <h2>Call Flow</h2>
+
+  <p>A username and password will be supplied to you when your customer account is created.</p>
+  <p>Use these to call:</p>
+  <pre>
+POST https://auth.neon-lab.com/api/v2/authenticate
+
+{
+    "username": "yourusername",
+    "password": "yourpass"
+}
+  </pre>
+
+  <p>An <code>access_token</code>/<code>refresh_token</code> pair is passed back on success:</p>
+  <pre>
+{
+    "access_token": "access_token",
+    "refresh_token": "refresh_token"
+}
+  </pre>
+
+  <p>Passing the <code>access_token</code> to the API can be done in three different ways:</p>
+
+  <p>1. As the query_string parameter:</p>
+  <pre>
+/a123/integrations/brightcove?integration_id=15add06a5cc511e5b7da00904c0df43e&token=access_token
+  </pre>
+
+  <p>2. In the JSON-encoded body parameters:</p>
+  <pre>
+/api/v2/pvmprjg44t5x7cqcrsw0i6tn/integrations/brightcove
+
+{
+    "publisher_id": "123badf",
+    "token": "access_token"
+}
+  </pre>
+
+  <p>3. As an <code>Authorization: Bearer</code> header:</p>
+  <pre>
+HEADER:
+
+Authorization: Bearer access_token
+/a123/integrations/brightcove?integration_id=15add06a5cc511e5b7da00904c0df43e
+  </pre>
+</div>
 </body>
 </html>
