@@ -221,7 +221,7 @@
     "/{account_id}/limits": {
       "get": {
         "tags": [
-          "account"
+          "account limits"
         ],
         "summary": "View rate limits for account",
         "produces": [
