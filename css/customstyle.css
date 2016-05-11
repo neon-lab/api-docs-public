@@ -1,0 +1,28 @@
+.body {
+	position: relative;
+}
+.tabpill {
+	color: black;
+	text-align: center;
+	background-color: #888;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+	color: black;
+	background-color: white;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+	font: ;
+}
+
+
+.nav-stacked { 
+}
+
+#CMSAPI, #AUTHAPI {
+	width: inherit;
+}
+.swagger-section #header { 
+	background-color: #888;
+}
