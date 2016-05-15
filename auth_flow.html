@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!--style type="text/css"></style-->
+    <title>Neon Labs API Documentation</title>
+    <link href="css/index.css" rel="stylesheet"/>
+    <link href='css/standalone.css' rel='stylesheet'/>
+    <link href='css/api-explorer.css' rel='stylesheet' type='text/css'/>
+    <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+
+    <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+    <script src='lib/handlebars-2.0.0.js' type='text/javascript'></script>
+    <script src='lib/underscore-min.js' type='text/javascript'></script>
+    <script src='lib/backbone-min.js' type='text/javascript'></script>
+    <script src='swagger-ui.js' type='text/javascript'></script>
+    <script src='lib/jsoneditor.js' type='text/javascript'></script>
+    <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
+    <script src='lib/marked.js' type='text/javascript'></script>
+    <script src='lib/swagger-oauth.js' type='text/javascript'></script>
+    <script src='lib/bootstrap.min.js' type='text/javascript'></script>
+
+</head>
+
+<body class="page-docs" style="zoom: 1;">
+<header class="site-header">
+    <nav role="navigation" class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle"><span
+                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span></button>
+                <h1 class="navbar-brand"><a href="http://neon-lab.com"><span>swagger explorer</span></a></h1>
+            </div>
+            <div id="navbar-collapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left nav-pills">
+                    <li class="li-why"><a href="index.html" style="font-size: 15px; padding-left: 0px">Welcome</a></li>
+                    <li class="li-why active"><a href="auth_flow.html" style="font-size: 15px; padding-left: 15px">Auth Flow</a></li>
+                    <li class="li-why"><a href="auth_public.html" style="font-size: 15px; padding-left: 15px">Authentication</a></li>
+                    <li class="li-why"><a href="cmsapiv2_public.html" style="font-size: 15px; padding-left: 15px">APIv2</a></li>
+                    <li class="li-why"><a href="telemetry_public.html" style="font-size: 15px; padding-left: 15px">Telemetry</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="content">
+    <div id="api2-explorer">
+        <div class="swagger-section page-docs" style="zoom: 1">
+            <div class="main-section">
+                <div id="swagger-ui-container" class="swagger-ui-wrap">
+                    <div style="padding:50px">
+                        <div class="swagger-ui-wrap">
+                            <h1>Authorization flow</h1>
+                            <p>You've got your username and password and you're ready to access the API. This live documentation manages tokens for you, but you'll generally need to fetch, store, and refresh your own tokens to use Neon.</p>
+                            <p>You'll use your username and password to request a long-lived refresh_token. You can use that <code>refresh_token</code> to request a short-lived <code>access_token</code>. Your requests to the API are authenticated by sending along your access token.</p>
+                            <p>Each access token expires after about 12 minutes, so you'll want to store the refresh token so you can acquire new access tokens.</p>
+                            <p>The authentication endpoint is different from the API endpoint. It uses a different base URL (https://auth.neon-lab.com) and only responds to requests over HTTPS.</p>
+                            <h2>Call Flow</h2>
+                            <p>With the username(email) and password you used to sign up on the application, you can make calls to the authentication endpoints.</p>
+                            <p>Use these to call:</p>
+                            <pre>
+                            POST https://auth.neon-lab.com/api/v2/authenticate
+
+                            {
+                               "username": "yourusername",
+                               "password": "yourpass"
+                            }
+                            </pre>
+
+                            <p>An <code>access_token</code>/<code>refresh_token</code> pair is passed back on success:</p>
+                            <pre>
+                            {
+                               "access_token": "access_token",
+                               "refresh_token": "refresh_token"
+                            }
+                            </pre>
+                            <p>Passing the <code>access_token</code> to the API can be done in three different ways:</p>
+                            <p>1. As the query_string parameter:</p>
+                            <pre>
+                            /a123/integrations/brightcove?integration_id=15add06a5cc511e5b7da00904c0df43e&token=access_token
+                            </pre>
+                            <p>2. In the JSON-encoded body parameters:</p>
+                            <pre>
+                            /api/v2/pvmprjg44t5x7cqcrsw0i6tn/integrations/brightcove
+
+                            {
+                               "publisher_id": "123badf",
+                               "token": "access_token"
+                            }
+                            </pre>
+
+                            <p>3. As an <code>Authorization: Bearer</code> header:</p>
+                            <pre>
+                            HEADER:
+
+                               Authorization: Bearer access_token
+                               /a123/integrations/brightcove?integration_id=15add06a5cc511e5b7da00904c0df43e
+                            </pre>
+                            <h2>The Tokens</h2>
+                            <p>At this point we have a short lived access token, and a token we can use to refresh that token</p> 
+                            <p>The access token lasts for 12 minutes. The provided refresh token will refresh it.</p> 
+                            <p>Treat your <code>refresh_token</code> as you would a password and do not share it.</p> 
+                            <p>Use your <code>refresh_token</code> to call</p>
+                            <pre>
+                            POST https://auth.neon-lab.com/api/v2/refresh_token
+
+                            {
+                               "token": "refresh_token",
+                            }
+                            </pre>
+
+                            <p>An <code>access_token</code>/<code>refresh_token</code> pair is passed back on success:</p>
+                            <pre>
+                            {
+                               "access_token": "access_token",
+                               "refresh_token": "refresh_token",
+                               "account_ids": "account ids this user is associated to"
+                            }
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
