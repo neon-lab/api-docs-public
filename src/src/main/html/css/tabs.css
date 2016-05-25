@@ -1,0 +1,46 @@
+.navbar, .navbar-inverse {
+	border-radius: 0;
+	border: none;
+	margin-bottom: 0;
+	min-height: 100px;
+}
+.nav li {
+	display: inline;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+	background-color: #888;
+	font-size: 1em;
+	font-weight: 300;
+}
+.navbar-inverse .navbar-nav li a:hover {
+	background-color: #888; 
+	color: #ff6b31;
+}
+.navbar-inverse .active {
+	background-color: grey;
+    color: white;
+	font-size: 1em;
+	font-weight: 300;
+	border-radius: 15px;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+    z-index: 801;
+    width: 100%;
+    position: absolute;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+	background-color: transparent;
+}
+.navbar__logo {
+    width: auto;
+    height: 3.09em;
+}
+header.site-header.site-header nav li.active a {
+	background-color: #888;
+    color: #ff6b31;
+	font-size: 1em;
+	font-weight: 300;
+	text-decoration: none;
+}
