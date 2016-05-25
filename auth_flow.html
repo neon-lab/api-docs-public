@@ -12,6 +12,7 @@
     <link href='css/standalone.css' rel='stylesheet'/>
     <link href='css/api-explorer.css' rel='stylesheet' type='text/css'/>
     <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+    <link href='css/tabs.css' media='screen' rel='stylesheet' type='text/css'/>
 
     <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
     <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
@@ -31,21 +32,25 @@
 
 <body class="page-docs" style="zoom: 1;">
 <header class="site-header">
-    <nav role="navigation" class="navbar navbar-default">
-        <div class="container">
+    <nav role="navigation" class="navbar-inverse navbar-static-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle"><span
-                        class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-                        class="icon-bar"></span><span class="icon-bar"></span></button>
-                <h1 class="navbar-brand"><a href="http://neon-lab.com"><span>swagger explorer</span></a></h1>
+                <a class="pull-left" href="http://neon-lab.com"><img class="navbar__logo" src="images/logo-fff.svg" /></a>
+                    <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle collapsed" >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
             </div>
-            <div id="navbar-collapse" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-left nav-pills">
-                    <li class="li-why"><a href="index.html" style="font-size: 15px; padding-left: 0px">Welcome</a></li>
-                    <li class="li-why active"><a href="auth_flow.html" style="font-size: 15px; padding-left: 15px">Auth Flow</a></li>
-                    <li class="li-why"><a href="auth_public.html" style="font-size: 15px; padding-left: 15px">Authentication</a></li>
-                    <li class="li-why"><a href="cmsapiv2_public.html" style="font-size: 15px; padding-left: 15px">CMS API</a></li>
-                    <li class="li-why"><a href="telemetry_public.html" style="font-size: 15px; padding-left: 15px">Telemetry</a></li>
+            <div id="navbar-collapse-1" class="collapse navbar-collapse">
+            <h1 class="navbar-brand"><a href="http://neon-lab.com"><img src="images/logo-fff.svg"></a></h1>
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Welcome</a></li>
+                    <li><a href="cmsapiv2_public.html">APIv2</a></li>
+                    <li class="active"><a href="auth_flow.html">Auth Flow</a></li>
+                    <li><a href="auth_public.html">Authentication</a></li>
+                    <li><a href="telemetry_public.html">Telemetry</a></li>
                 </ul>
             </div>
         </div>
