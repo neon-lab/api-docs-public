@@ -157,6 +157,7 @@
   <p>You've got your username and password and you're ready to access the API. This live documentation manages tokens for you, but you'll generally need to fetch, store, and refresh your own tokens to use Neon.</p>
   <p>You'll use your username and password to request a long-lived refresh_token. You can use that <code>refresh_token</code> to request a short-lived <code>access_token</code>. Your requests to the API are authenticated by sending along your access token.</p>
   <p>Each access token expires after about 12 minutes, so you'll want to store the refresh token so you can acquire new access tokens.</p>
+  <p>The refresh token expires after 14 days, at which point the username and password will need to be used again in order to aquire a new token.</p>
   <p>The authentication endpoint is different from the API endpoint. It uses a different base URL (https://auth.neon-lab.com) and only responds to requests over HTTPS.</p>
 
   <h2>Call Flow</h2>
